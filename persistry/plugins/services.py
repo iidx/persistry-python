@@ -97,6 +97,7 @@ class PluginClass(object):
             for entry in objects_list:
                 keyname = entry.pop(1)
                 self.result[keyname] = entry
+            
 
     @property
     def keys(self):

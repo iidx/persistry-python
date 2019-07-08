@@ -83,6 +83,10 @@ class HiveManager:
         except:
             pass
         try:
+            """
+                만약 \x00\x00으로 문자열 혹은 데이터를 구분한다면 strip되서 붙어버림
+                따로 처리가 필요한경우 \x00\x00을 선행적으로 다른 문자열로 치환 필요.
+            """
             string = hive_object.data.replace(b'\x00', b'')
             return string.decode('utf-8')
         except:
@@ -149,6 +153,7 @@ class Persistry:
             플러그인 돌려돌려돌림판
         """
         for module_name in self.plugin.plugins:
+            print('[+]', module_name, 'start')
             mod = self.plugin.load_plugin(module_name)
             mod = mod.PluginClass(self.hive)
             mod.process_plugin()

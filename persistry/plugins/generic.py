@@ -15,6 +15,7 @@ class GenericProfile1(object):
                 key = hive.get_key_by_path(subkey_path)
                 last_write = str(key.last_written_time)
                 for v in hive.get_key_by_path(subkey_path).values:
+                    print(v.data)
                     self.result.append([last_write, v.name, self.hive.get_string(v)])
             except Exception as e:
                 pass
